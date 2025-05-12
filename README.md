@@ -12,8 +12,6 @@ guran@containerlab01:~/routing-lab2$ containerlab deploy
 10:48:40 INFO Containerlab started version=0.68.0
 10:48:40 INFO Parsing & checking topology file=srlfrr01.clab.yml
 10:48:40 INFO Creating docker network name=clab IPv4 subnet=172.20.20.0/24 IPv6 subnet=3fff:172:20:20::/64 MTU=1500
-10:48:40 ERRO node "spine01" (nokia_srlinux) has a minimum available memory requirement of 2 GB whilst only 1 GB memory is available
-10:48:40 ERRO node "spine02" (nokia_srlinux) has a minimum available memory requirement of 2 GB whilst only 1 GB memory is available
 10:48:40 INFO Creating lab directory path=/home/guran/routing-lab2/clab-routing-lab3
 10:48:40 INFO Creating container name=r2-host04
 10:48:40 INFO Creating container name=r2-leaf01
