@@ -8,101 +8,112 @@ Rack 2 is fully based on ibgp with the leaf and hosts sharing 1 ASN.
 ## Depolying
 
 ```
-guran@containerlab01:~/routing-lab$ containerlab deploy
-14:20:31 INFO Containerlab started version=0.68.0
-14:20:31 INFO Parsing & checking topology file=srlfrr01.clab.yml
-14:20:32 ERRO node "spine01" (nokia_srlinux) has a minimum available memory requirement of 2 GB whilst only 1 GB memory is available
-14:20:32 INFO Pulling ghcr.io/nokia/srlinux:latest Docker image
-14:22:48 INFO Done pulling ghcr.io/nokia/srlinux:latest
-14:22:48 ERRO node "spine02" (nokia_srlinux) has a minimum available memory requirement of 2 GB whilst only 1 GB memory is available
-14:22:48 INFO Creating lab directory path=/home/guran/routing-lab/clab-routing-lab3
-14:22:48 INFO Creating container name=r1-host04
-14:22:48 INFO Creating container name=r2-host02
-14:22:48 INFO Creating container name=r2-host03
-14:22:48 INFO Creating container name=r1-leaf01
-14:22:48 INFO Creating container name=r2-leaf01
-14:22:48 INFO Creating container name=r1-leaf02
-14:22:48 INFO Creating container name=r1-host01
-14:22:48 INFO Creating container name=spine02
-14:22:51 INFO Created link: spine02:e1-2 (ethernet-1/2) ▪┄┄▪ r1-leaf02:eth2
-14:22:51 INFO Created link: r1-host01:eth2 ▪┄┄▪ r1-leaf02:eth20
-14:22:51 INFO Creating container name=r1-host03
-14:22:51 INFO Creating container name=r2-host01
-14:22:51 INFO Creating container name=r1-host02
-14:22:51 INFO Running postdeploy actions kind=nokia_srlinux node=spine02
-14:22:51 INFO Created link: spine02:e1-1 (ethernet-1/1) ▪┄┄▪ r1-leaf01:eth2
-14:22:51 INFO Created link: r1-host01:eth1 ▪┄┄▪ r1-leaf01:eth20
-14:22:52 INFO Created link: spine02:e1-3 (ethernet-1/3) ▪┄┄▪ r2-leaf01:eth2
-14:22:53 INFO Creating container name=r2-host04
-14:22:53 INFO Created link: r2-host02:eth1 ▪┄┄▪ r2-leaf01:eth21
-14:22:53 INFO Created link: r1-host04:eth2 ▪┄┄▪ r1-leaf02:eth23
-14:22:53 INFO Creating container name=spine01
-14:22:54 INFO Created link: r2-host03:eth1 ▪┄┄▪ r2-leaf01:eth22
-14:22:54 INFO Creating container name=r2-leaf02
-14:22:54 INFO Created link: r1-host04:eth1 ▪┄┄▪ r1-leaf01:eth23
-14:22:56 INFO Created link: r1-host02:eth1 ▪┄┄▪ r1-leaf01:eth21
-14:22:56 INFO Created link: r1-host02:eth2 ▪┄┄▪ r1-leaf02:eth21
-14:22:56 INFO Created link: r1-host03:eth1 ▪┄┄▪ r1-leaf01:eth22
-14:22:57 INFO Created link: r1-host03:eth2 ▪┄┄▪ r1-leaf02:eth22
-14:22:57 INFO Created link: r2-host01:eth1 ▪┄┄▪ r2-leaf01:eth20
-14:22:57 INFO Created link: spine02:e1-4 (ethernet-1/4) ▪┄┄▪ r2-leaf02:eth2
-14:22:57 INFO Created link: r2-host01:eth2 ▪┄┄▪ r2-leaf02:eth20
-14:22:58 INFO Created link: r2-host02:eth2 ▪┄┄▪ r2-leaf02:eth21
-14:22:58 INFO Created link: r2-host04:eth1 ▪┄┄▪ r2-leaf01:eth23
-14:22:58 INFO Created link: spine01:e1-1 (ethernet-1/1) ▪┄┄▪ r1-leaf01:eth1
-14:22:58 INFO Created link: r2-host03:eth2 ▪┄┄▪ r2-leaf02:eth22
-14:22:58 INFO Created link: r2-host04:eth2 ▪┄┄▪ r2-leaf02:eth23
-14:22:58 INFO Created link: spine01:e1-2 (ethernet-1/2) ▪┄┄▪ r1-leaf02:eth1
-14:22:58 INFO Created link: spine01:e1-3 (ethernet-1/3) ▪┄┄▪ r2-leaf01:eth1
-14:22:58 INFO Created link: spine01:e1-4 (ethernet-1/4) ▪┄┄▪ r2-leaf02:eth1
-14:22:58 INFO Running postdeploy actions kind=nokia_srlinux node=spine01
-14:25:01 INFO Adding host entries path=/etc/hosts
-14:25:02 INFO Adding SSH config for nodes path=/etc/ssh/ssh_config.d/clab-routing-lab3.conf
-╭─────────────────────────────┬──────────────────────────────┬─────────┬───────────────────╮
-│             Name            │          Kind/Image          │  State  │   IPv4/6 Address  │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r1-host01 │ linux                        │ running │ 172.20.20.9       │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::9 │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r1-host02 │ linux                        │ running │ 172.20.20.11      │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::b │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r1-host03 │ linux                        │ running │ 172.20.20.10      │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::a │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r1-host04 │ linux                        │ running │ 172.20.20.7       │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::7 │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r1-leaf01 │ linux                        │ running │ 172.20.20.3       │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::3 │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r1-leaf02 │ linux                        │ running │ 172.20.20.5       │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::5 │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r2-host01 │ linux                        │ running │ 172.20.20.12      │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::c │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r2-host02 │ linux                        │ running │ 172.20.20.4       │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::4 │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r2-host03 │ linux                        │ running │ 172.20.20.6       │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::6 │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r2-host04 │ linux                        │ running │ 172.20.20.13      │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::d │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r2-leaf01 │ linux                        │ running │ 172.20.20.8       │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::8 │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-r2-leaf02 │ linux                        │ running │ 172.20.20.15      │
-│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::f │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-spine01   │ nokia_srlinux                │ running │ 172.20.20.14      │
-│                             │ ghcr.io/nokia/srlinux:latest │         │ 3fff:172:20:20::e │
-├─────────────────────────────┼──────────────────────────────┼─────────┼───────────────────┤
-│ clab-routing-lab3-spine02   │ nokia_srlinux                │ running │ 172.20.20.2       │
-│                             │ ghcr.io/nokia/srlinux:latest │         │ 3fff:172:20:20::2 │
-╰─────────────────────────────┴──────────────────────────────┴─────────┴───────────────────╯
+guran@containerlab01:~/routing-lab2$ containerlab deploy
+10:48:40 INFO Containerlab started version=0.68.0
+10:48:40 INFO Parsing & checking topology file=srlfrr01.clab.yml
+10:48:40 INFO Creating docker network name=clab IPv4 subnet=172.20.20.0/24 IPv6 subnet=3fff:172:20:20::/64 MTU=1500
+10:48:40 ERRO node "spine01" (nokia_srlinux) has a minimum available memory requirement of 2 GB whilst only 1 GB memory is available
+10:48:40 ERRO node "spine02" (nokia_srlinux) has a minimum available memory requirement of 2 GB whilst only 1 GB memory is available
+10:48:40 INFO Creating lab directory path=/home/guran/routing-lab2/clab-routing-lab3
+10:48:40 INFO Creating container name=r2-host04
+10:48:40 INFO Creating container name=r2-leaf01
+10:48:40 INFO Creating container name=r1-leaf02
+10:48:40 INFO Creating container name=r2-host01
+10:48:40 INFO Creating container name=r1-host03
+10:48:40 INFO Creating container name=r1-leaf01
+10:48:40 INFO Creating container name=r2-host05
+10:48:40 INFO Creating container name=spine02
+10:48:42 INFO Creating container name=r1-host01
+10:48:42 INFO Creating container name=r2-host02
+10:48:43 INFO Creating container name=r2-leaf02
+10:48:43 INFO Created link: spine02:e1-1 (ethernet-1/1) ▪┄┄▪ r1-leaf01:eth2
+10:48:43 INFO Created link: spine02:e1-3 (ethernet-1/3) ▪┄┄▪ r2-leaf01:eth2
+10:48:44 INFO Running postdeploy actions kind=nokia_srlinux node=spine02
+10:48:44 INFO Creating container name=r1-host04
+10:48:44 INFO Created link: r2-host01:eth1 ▪┄┄▪ r2-leaf01:eth20
+10:48:44 INFO Created link: spine02:e1-2 (ethernet-1/2) ▪┄┄▪ r1-leaf02:eth2
+10:48:44 INFO Created link: r1-host03:eth1 ▪┄┄▪ r1-leaf01:eth22
+10:48:45 INFO Created link: r2-host04:eth1 ▪┄┄▪ r2-leaf01:eth23
+10:48:45 INFO Created link: r2-host05:eth1 ▪┄┄▪ r2-leaf01:eth24
+10:48:45 INFO Creating container name=r2-host03
+10:48:45 INFO Created link: r1-host03:eth2 ▪┄┄▪ r1-leaf02:eth22
+10:48:45 INFO Creating container name=r1-host02
+10:48:45 INFO Creating container name=spine01
+10:48:46 INFO Created link: r1-host01:eth1 ▪┄┄▪ r1-leaf01:eth20
+10:48:46 INFO Created link: r1-host01:eth2 ▪┄┄▪ r1-leaf02:eth20
+10:48:46 INFO Creating container name=r1-host05
+10:48:49 INFO Created link: r1-host04:eth1 ▪┄┄▪ r1-leaf01:eth23
+10:48:49 INFO Created link: r1-host04:eth2 ▪┄┄▪ r1-leaf02:eth23
+10:48:49 INFO Created link: r2-host02:eth1 ▪┄┄▪ r2-leaf01:eth21
+10:48:50 INFO Created link: spine02:e1-4 (ethernet-1/4) ▪┄┄▪ r2-leaf02:eth2
+10:48:50 INFO Created link: r2-host01:eth2 ▪┄┄▪ r2-leaf02:eth20
+10:48:50 INFO Created link: r2-host02:eth2 ▪┄┄▪ r2-leaf02:eth21
+10:48:50 INFO Created link: r2-host03:eth1 ▪┄┄▪ r2-leaf01:eth22
+10:48:50 INFO Created link: r2-host03:eth2 ▪┄┄▪ r2-leaf02:eth22
+10:48:50 INFO Created link: r2-host04:eth2 ▪┄┄▪ r2-leaf02:eth23
+10:48:50 INFO Created link: spine01:e1-1 (ethernet-1/1) ▪┄┄▪ r1-leaf01:eth1
+10:48:50 INFO Created link: spine01:e1-2 (ethernet-1/2) ▪┄┄▪ r1-leaf02:eth1
+10:48:50 INFO Created link: spine01:e1-3 (ethernet-1/3) ▪┄┄▪ r2-leaf01:eth1
+10:48:50 INFO Created link: spine01:e1-4 (ethernet-1/4) ▪┄┄▪ r2-leaf02:eth1
+10:48:50 INFO Running postdeploy actions kind=nokia_srlinux node=spine01
+10:48:51 INFO Created link: r1-host05:eth1 ▪┄┄▪ r1-leaf01:eth24
+10:48:51 INFO Created link: r1-host02:eth1 ▪┄┄▪ r1-leaf01:eth21
+10:48:51 INFO Created link: r1-host02:eth2 ▪┄┄▪ r1-leaf02:eth21
+
+
+10:50:08 INFO Adding host entries path=/etc/hosts
+10:50:09 INFO Adding SSH config for nodes path=/etc/ssh/ssh_config.d/clab-routing-lab3.conf
+╭─────────────────────────────┬──────────────────────────────┬─────────┬────────────────────╮
+│             Name            │          Kind/Image          │  State  │   IPv4/6 Address   │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r1-host01 │ linux                        │ running │ 172.20.20.10       │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::a  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r1-host02 │ linux                        │ running │ 172.20.20.16       │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::10 │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r1-host03 │ linux                        │ running │ 172.20.20.4        │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::4  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r1-host04 │ linux                        │ running │ 172.20.20.13       │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::d  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r1-host05 │ linux                        │ running │ 172.20.20.17       │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::11 │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r1-leaf01 │ linux                        │ running │ 172.20.20.2        │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::2  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r1-leaf02 │ linux                        │ running │ 172.20.20.9        │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::9  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r2-host01 │ linux                        │ running │ 172.20.20.8        │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::8  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r2-host02 │ linux                        │ running │ 172.20.20.11       │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::b  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r2-host03 │ linux                        │ running │ 172.20.20.14       │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::e  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r2-host04 │ linux                        │ running │ 172.20.20.3        │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::3  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r2-host05 │ linux                        │ running │ 172.20.20.7        │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::7  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r2-leaf01 │ linux                        │ running │ 172.20.20.6        │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::6  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-r2-leaf02 │ linux                        │ running │ 172.20.20.12       │
+│                             │ quay.io/frrouting/frr:10.1.3 │         │ 3fff:172:20:20::c  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-spine01   │ nokia_srlinux                │ running │ 172.20.20.15       │
+│                             │ ghcr.io/nokia/srlinux:latest │         │ 3fff:172:20:20::f  │
+├─────────────────────────────┼──────────────────────────────┼─────────┼────────────────────┤
+│ clab-routing-lab3-spine02   │ nokia_srlinux                │ running │ 172.20.20.5        │
+│                             │ ghcr.io/nokia/srlinux:latest │         │ 3fff:172:20:20::5  │
+
 
 ```
 
